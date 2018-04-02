@@ -69,19 +69,6 @@ public class MainActivity extends Activity {
         switch (view.getId()) {
             case R.id.checkBox1:
                 if (checked) {
-					if (mFirstEnable) {
-						enableTVOut(true);
-						try {
-							Thread.sleep(500);
-						} catch (InterruptedException e) {
-						}
-						enableTVOut(false);
-						try {
-							Thread.sleep(500);
-						} catch (InterruptedException e) {
-						}
-						mFirstEnable = false;
-					}
                     enableTVOut(true);
                 } else {
                     enableTVOut(false);
