@@ -7,5 +7,6 @@
 	<string name="show_sample">Show Sample</string>
 	<string name="enable_tv_out">Enable TV Out</string>
 	<string name="text_scroll_view">TextScrollView</string>
+	<string name="enable_pal">PAL Mode</string>
 
 </resources>

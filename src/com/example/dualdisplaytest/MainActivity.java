@@ -28,6 +28,7 @@ public class MainActivity extends Activity {
     static final String TAG = "DualDisplayTest";
     static final String checkStatusFile = "/sys/devices/platform/c0000000.soc/c0101000.display_drm_tv/enable";
     static final String controlTVOutFile = "/sys/devices/platform/c0000000.soc/c0101000.display_drm_tv/enable";
+    static final String controlPALFile = "/sys/devices/platform/c0000000.soc/c0101000.display_drm_tv/type";
 
     private DemoPresentation mDemoPresentation = null;
 	private boolean mFirstEnable = true;
@@ -78,6 +79,13 @@ public class MainActivity extends Activity {
             case R.id.checkBox2:
                 showTVOut(checked);
                 break;
+
+			case R.id.checkBox3:
+				if (checked) {
+					enablePALMode(true);
+				} else {
+					enablePALMode(false);
+				}
         }
     }
 
@@ -115,6 +123,23 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
     }
+
+	private void enablePALMode(boolean enable) {
+        String out = "";
+        if (enable)
+            out = "PAL-BGHI";
+        else
+            out = "NTSC-M";
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(controlPALFile));
+            bw.write(out);
+            bw.flush();
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
 
     private void showTVOut(boolean enable) {
         if (enable) {
